@@ -11,7 +11,7 @@ namespace HW002
         /// </summary>
         public static void PrintHeader()
         {
-            Console.WriteLine("Программа для работы со Словарем Dictionary<T> (записная книжка с ФИО и номером телефона и ФИО)");
+            Console.WriteLine("Программа для работы с HashSet");
         }
 
         /// <summary>
