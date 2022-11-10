@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
+using System.Xml.Linq;
 using System.Xml.Serialization;
 
 namespace HW004
@@ -61,6 +63,11 @@ namespace HW004
             
         }
 
+        /// <summary>
+        /// Метод десериализации списка List<T>
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
         public static List<Note> DeserializeList(string path)
         {
             List<Note> tempNoteCol = new List<Note>();
@@ -72,6 +79,36 @@ namespace HW004
             tempNoteCol = xmlSerializer.Deserialize(fstream) as List<Note>;
 
             return tempNoteCol;
+        }
+
+        /// <summary>
+        /// Сериализация XML
+        /// </summary>
+        /// <param name="n"></param>
+        /// <param name="path"></param>
+        public static void CreateXMLStruct(Note n, string path)
+        {
+            XElement newPerson      = new XElement("Person");
+            XElement newAddress     = new XElement("Address");
+            XElement newStreet      = new XElement("Street");
+            XElement newHouseNumber = new XElement("HouseNumber");
+            XElement newFlatNumber  = new XElement("FlatNumber");
+            XElement newPhones      = new XElement("Phones");
+            XElement newMobilePhone = new XElement("MobilePhone");
+            XElement newFlatPhone   = new XElement("FlatPhone");
+
+            XAttribute xAttributeName = new XAttribute("name", n.FIO);
+
+            newPerson.Add(xAttributeName);
+            newPerson.Add(newAddress, newPhones);
+            newAddress.Add(newStreet, newHouseNumber, newFlatNumber);
+            newStreet.Add(n.Street);
+            newHouseNumber.Add(n.HomeNumber);
+            newFlatNumber.Add(n.FlatNumber);
+            newPhones.Add(newMobilePhone, newFlatPhone);
+            newMobilePhone.Add(n.MobilePhone);
+            newFlatPhone.Add(n.FlatPhone);
+            newPerson.Save(path);
         }
     }
 }

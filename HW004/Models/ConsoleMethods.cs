@@ -21,8 +21,6 @@ namespace HW004
         public static void PrintMenu()
         {
             Console.WriteLine("1 - Добавить запись ");
-            Console.WriteLine("2 - Удалить одно или несколько чисел из HashSet<int> ");
-            Console.WriteLine("3 - Вывести элементы HashSet<int> в консоль ");
             Console.WriteLine("q - Выйти из программы ");
         }
 
@@ -66,7 +64,7 @@ namespace HW004
         /// </summary>
         public static void EnterFlatNumber()
         {
-            Console.WriteLine("Введите Номер дома");
+            Console.WriteLine("Введите Номер квартиры");
         }
 
         /// <summary>

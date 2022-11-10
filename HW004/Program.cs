@@ -24,7 +24,8 @@ namespace HW004
         }
         static void Main(string[] args)
         {
-
+            Controller c = new Controller();
+            c.Run();
 
             Delay();
         }

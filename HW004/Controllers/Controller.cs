@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Xml.Linq;
 
 namespace HW004
 {
@@ -8,6 +9,7 @@ namespace HW004
     {
         public void Run()
         {
+            Note note = new Note();
             bool start = true;
             do
             {
@@ -17,8 +19,6 @@ namespace HW004
                 switch (select)
                 {
                     case '1':
-                        Note note = new Note();
-
                         ConsoleMethods.EnterFio();
                         note.FIO = ConsoleMethods.GetEnteredString();
 
@@ -26,7 +26,7 @@ namespace HW004
                         note.Street = ConsoleMethods.GetEnteredString();
 
                         ConsoleMethods.EnterHomeNumberr();
-                        note.HomeNumber = Convert.ToInt32(ConsoleMethods.GetEnteredString());
+                        note.HomeNumber = ConsoleMethods.GetEnteredString();
 
                         ConsoleMethods.EnterFlatNumber();
                         note.FlatNumber = Convert.ToInt32(ConsoleMethods.GetEnteredString());
@@ -36,10 +36,9 @@ namespace HW004
 
                         ConsoleMethods.EnterFlatPhoneNumber();
                         note.FlatPhone = ConsoleMethods.GetEnteredString();
-                        break;
-                    case '2':
-                        break;
-                    case '3':
+                        string[] nameString = (note.FIO.ToString()).Split(" ");
+                        string path = @$"_{nameString[0]}.xml";
+                        XMLWorker.CreateXMLStruct(note, path);
                         break;
                     case 'q':
                         start = false;
