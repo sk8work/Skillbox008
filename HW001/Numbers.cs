@@ -51,9 +51,20 @@ namespace HW001
         /// <param name="to"></param>
         public void DeleteFromList(List<int> nums, int from, int to)
         {
-            for (int i = from + 1; i < to; i++)
+            List<int> temp = new List<int>();
+            foreach (var item in nums)
             {
-                nums.RemoveAll(item => item == i);
+                if (item <= from || item >= to)
+                {
+                    temp.Add(item);
+                }
+            }
+
+            nums.Clear();
+
+            foreach (var item in temp)
+            {
+                nums.Add(item);
             }
         }
     }
